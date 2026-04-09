@@ -1,0 +1,26 @@
+RewriteEngine On
+RewriteBase /LRS2026/
+
+# -------------------------------------------------
+# Allow direct access to existing files & folders
+# -------------------------------------------------
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# -------------------------------------------------
+# Portfolio Detail Routing
+# /portfolio-detail/6
+# -------------------------------------------------
+RewriteRule ^portfolio-detail/([^/]+)/?$ portfolio-detail.php?key=$1 [L,QSA]
+
+# -------------------------------------------------
+# Optional: clean tag URLs
+# /portfolio-detail/branding
+# -------------------------------------------------
+RewriteRule ^portfolio-detail/([^/]+)/?$ portfolio-detail.php?key=$1 [L,QSA]
+
+# -------------------------------------------------
+# 404 Handling
+# -------------------------------------------------
+ErrorDocument 404 /LRS2026/404.php
